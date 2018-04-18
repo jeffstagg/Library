@@ -44,7 +44,7 @@ Included with the slideshow is the code for 2 projects:
 ```typescript
 export function loadConfig(oidcConfigService: OidcConfigService) {
   console.log('App Initializer Starting');
-  return () => oidcConfigService.load_using_custom_stsServer('https://login.microsoftonline.com/newazureb2cdemo.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_SignUpIn');
+  return () => oidcConfigService.load_using_custom_stsServer('https://login.microsoftonline.com/resourceUrl.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=PolicyName');
 }
 ```
 
@@ -58,11 +58,11 @@ export class AppModule {
     this.oidcConfigService.onConfigurationLoaded.subscribe(() => {
 
       const openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
-      openIDImplicitFlowConfiguration.stsServer = 'https://login.microsoftonline.com/tfp/newazureb2cdemo.onmicrosoft.com/b2c_1_signupin/oauth2/v2.0/';
+      openIDImplicitFlowConfiguration.stsServer = 'https://login.microsoftonline.com/tfp/resourceUrl.onmicrosoft.com/b2c_1_signupin/oauth2/v2.0/';
       openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/redirect.html';
-      openIDImplicitFlowConfiguration.client_id = 'e823eb1b-196a-4bde-a9d7-3af6715965b0'; //application id
+      openIDImplicitFlowConfiguration.client_id = 'application-id-012345'; //application id
       openIDImplicitFlowConfiguration.response_type = 'id_token token';
-      openIDImplicitFlowConfiguration.scope = 'openid offline_access https://newazureb2cdemo.onmicrosoft.com/demoapi/demo.read'; //URL of newly added scope
+      openIDImplicitFlowConfiguration.scope = 'openid offline_access https://resourceUrl.onmicrosoft.com/demoapi/demo.read'; //URL of newly added scope
       openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'http://localhost:4200';
       openIDImplicitFlowConfiguration.post_login_route = '/';
       openIDImplicitFlowConfiguration.forbidden_route = '/';
